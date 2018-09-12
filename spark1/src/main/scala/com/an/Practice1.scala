@@ -19,16 +19,32 @@ object Practice1 {
     //创建sparkContext
     val sparkContext = new SparkContext(sparkConf)
 
-    sparkContext.textFile(args(0)).
-      flatMap(_.split(" ")).
-      map((_, 1)).
-      reduceByKey(_ + _, 1).
-      sortBy(_._2, false).
-      saveAsTextFile(args(1))
+    // word count
+//    wordCount(sparkContext,args(0),args(1))
+
+
 
     logger.info("complete")
 
     sparkContext.stop()
+  }
+
+  /**
+    * wordcount
+    * @param sc sparkContext
+    * @param sourcePath 数据原
+    * @param destPath 保存路径
+    */
+  def wordCount(sc: SparkContext, sourcePath: String, destPath: String): Unit = {
+
+    sc.textFile(sourcePath)
+      .flatMap(_.split(" "))
+      .map((_, 1))
+      .reduceByKey(_ + _, 1)
+      .sortBy(_._2, false)
+      .saveAsTextFile(destPath)
+    logger.info("wordcount is done")
+
   }
 
 
