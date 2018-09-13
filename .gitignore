@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Scala template
+*.class
+*.log
+
+将删除 spark1/src/test/
+将删除 spark1/target/

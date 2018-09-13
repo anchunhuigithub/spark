@@ -22,8 +22,6 @@ object Practice1 {
     // word count
 //    wordCount(sparkContext,args(0),args(1))
 
-
-
     logger.info("complete")
 
     sparkContext.stop()
